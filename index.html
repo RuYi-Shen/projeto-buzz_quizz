@@ -21,10 +21,16 @@
 
     <main>
         <section class="my-quizz">
+            <div class="my-quizz-header hide">
+                <h2>Seus Quizzes</h2>
+                <ion-icon name="add-circle" onclick="createNewQuizz()"></ion-icon>
+            </div>
+            
             <div class="empty-quizz quizz">
                 <p>Você não criou nenhum quizz ainda :(</p>
-                <button><p>Criar Quizz</p></button>
+                <button onclick="createNewQuizz()"><p>Criar Quizz</p></button>
             </div>
+            <div class="quizzes"></div>
         </section>
         <section class="all-quizz">
             <h2>Todos os Quizzes</h2>
