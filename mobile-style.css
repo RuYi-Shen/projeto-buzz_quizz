@@ -202,14 +202,39 @@ main {
     width: 163px;
 }
 
-.quizz-page-questions .answer img{
+.quizz-page img{
     width: 100%;
 }
 
 .quizz-page-questions .answer p{
-    margin-top: 5px;
+    margin-top: 6px;
     font-size: 13px;
     font-weight: 700
+}
+
+.quizz-page-result{
+    background-color: white;
+    padding: 18px;
+}
+
+.quizz-page-result .rank-title{
+    background-color: #4444aa;
+    width: 100%;
+    height: 89px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 9px;
+    color: white;
+    font-weight: 700;
+    font-size: 19px
+}
+
+.quizz-page-result .rank-description{
+    margin-top: 9px;
+    font-size: 17px;
+    font-weight: 700;
+    color: #484848
 }
 
 /* features configuration */
