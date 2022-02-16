@@ -64,7 +64,7 @@ function openQuizz(){
 }
 
 function createNewQuizz(){
-
+    document.querySelector("main").classList.add("hide");
 }
 
 // Initialization 
