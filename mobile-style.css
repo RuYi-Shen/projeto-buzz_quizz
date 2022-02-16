@@ -1,0 +1,69 @@
+/* global configuration */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #FAFAFA;
+    font-family: 'Roboto', sans-serif;
+}
+
+/* scope configuration */
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 69px;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #EC362D;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    z-index: 10;
+}
+
+header h1 {
+    color: #FFFFFF;
+    font-weight: 700;
+    font-size: 37px;
+    line-height: 43px;
+}
+
+main {
+    padding-top: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.quizz {
+    width: 340px;
+    height: 181px;
+    border-radius: 5px;
+}
+
+.empty-quizz {
+    border: 1px dashed #D5D5D5;
+    display: block;
+    align-items: center;
+    text-align: center;
+}
+
+.empty-quizz > p {
+    padding: 2px 45px;
+    font-size: 20px;
+    line-height: 23px;
+    display: flex;
+    color: #B9B9B9;
+}
+
+
+
+/* features configuration */
+
+.hide {
+    display: none;
+}
