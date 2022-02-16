@@ -116,7 +116,7 @@ main {
     color: #FFFFFF;
 }
 
-.gradient-layer{
+.gradient-layer {
     position: absolute;
     top: 0;
     left: 0;
@@ -125,7 +125,7 @@ main {
     background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 64.58%, #000000 100%);
 }
 
-.my-quizz-header{
+.my-quizz-header {
     width: 340px;
     font-weight: bold;
     font-size: 20px;
@@ -138,16 +138,16 @@ main {
     justify-content: space-between;
 }
 
-.my-quizz-header ion-icon{
+.my-quizz-header ion-icon {
     color: #EC362D;
     font-size: 30px;
 }
 
-.quizz-page{
+.quizz-page {
     padding-top: 69px;
 }
 
-.quizz-page-header{
+.quizz-page-header {
     background-image: url('https://http.cat/404.jpg');
     width: 100%;
     height: 142px;
@@ -155,7 +155,7 @@ main {
     font-size: 19px;
 }
 
-.quizz-page-header div{
+.quizz-page-header div {
     background-color: rgba(0, 0, 0, 0.6);
     height: 100%;
     width: 100%;
@@ -163,6 +163,58 @@ main {
     justify-content: center;
     align-items: center;
 }
+
+.quizz-creation .inputs {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    width: 100vw;
+    height: 256px;
+    padding-top: 21px;
+    padding-bottom: 24px;
+    margin: 29px 0;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
+}
+
+.quizz-creation input {
+    width: 341px;
+    height: 46px;
+    border: 1px solid #D1D1D1;
+    box-sizing: border-box;
+    border-radius: 5px;
+    font-style: italic;
+    font-size: 19px;
+    line-height: 22px;
+    color: #BABABA;
+    padding-left: 14px;
+}
+
+.quizz-creation button {
+    width: 324px;
+    height: 54px;
+    background: #EC362D;
+    border: none;
+    border-radius: 15px;
+    font-size: 18px;
+    line-height: 21px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #FFF5F4;
+}
+
+.quizz-creation h2 {
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 23px;
+    display: flex;
+    align-items: center;
+    color: #000000;
+}
+
 
 /* features configuration */
 

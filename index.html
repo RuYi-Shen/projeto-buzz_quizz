@@ -19,7 +19,7 @@
 
     <header><h1>BuzzQuizz</h1></header>
 
-    <main>
+    <main class="quizz-list">
         <section class="my-quizz">
             <div class="my-quizz-header hide">
                 <h2>Seus Quizzes</h2>
@@ -47,6 +47,29 @@
         <section class="quizz-page-questions"></section>
         <section class="quizz-page-answer"></section>
         <section class="quizz-page-footer"></section>
+    </main>
+
+    <main class="quizz-creation info hide">
+        <h2>Comece pelo começo</h2>
+        <div class="inputs">
+            <input type="text" maxlength="65" placeholder="Título do seu quizz" required>
+            <input type="url" pattern="https://.*" placeholder="URL da imagem do seu quizz" required>
+            <input type="number" min="3" placeholder="Quantidade de perguntas do quizz" required>
+            <input type="number" min="2" placeholder="Quantidade de níveis do quizz" required>
+        </div>
+        <button onclick="goToQuestions()">Prosseguir pra criar perguntas</button>
+    </main>
+
+    <main class="quizz-creation question hide">
+        <h2>Crie suas perguntas</h2>
+    </main>
+
+    <main class="quizz-creation level hide">
+        <h2>Agora, decida os níveis!</h2>
+    </main>
+
+    <main class="quizz-creation sucess hide">
+        <h2>Seu quizz está pronto!</h2>
     </main>
 
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
