@@ -143,6 +143,27 @@ main {
     font-size: 30px;
 }
 
+.quizz-page{
+    padding-top: 69px;
+}
+
+.quizz-page-header{
+    background-image: url('https://http.cat/404.jpg');
+    width: 100%;
+    height: 142px;
+    color: white;
+    font-size: 19px;
+}
+
+.quizz-page-header div{
+    background-color: rgba(0, 0, 0, 0.6);
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 /* features configuration */
 
 .hide {
