@@ -151,7 +151,7 @@ main {
     width: 100%
 }
 
-.quizz-page-header{
+.quizz-page-header {
     background-image: url('https://http.cat/404.jpg');
     height: 142px;
     color: white;
@@ -176,7 +176,6 @@ main {
     height: 256px;
     padding-top: 21px;
     padding-bottom: 24px;
-    margin: 29px 0;
     background: #FFFFFF;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
 }
@@ -197,6 +196,7 @@ main {
 .quizz-creation button {
     width: 324px;
     height: 54px;
+    margin-top: 29px;
     background: #EC362D;
     border: none;
     border-radius: 15px;
@@ -215,23 +215,24 @@ main {
     line-height: 23px;
     display: flex;
     align-items: center;
+    margin-bottom: 29px;
     color: #000000;
 }
 
-.quizz-page-questions{
+.quizz-page-questions {
     display: flex;
     flex-direction: column;
     gap: 28px;
     padding: 24px 0
 }
 
-.quizz-page-questions article{
+.quizz-page-questions article {
     background-color: white;
     width: 100%;
     padding: 18px;
 }
 
-.quizz-page-questions .question-title{
+.quizz-page-questions .question-title {
     background-color: #4444aa;
     width: 100%;
     height: 89px;
@@ -244,31 +245,32 @@ main {
     font-size: 19px
 }
 
-.quizz-page-questions .answers{
+.quizz-page-questions .answers {
     display: flex;
     flex-wrap: wrap;
     gap: 12px
 }
-.quizz-page-questions .answer{
+
+.quizz-page-questions .answer {
     width: 163px;
 }
 
-.quizz-page img{
+.quizz-page img {
     width: 100%;
 }
 
-.quizz-page-questions .answer p{
+.quizz-page-questions .answer p {
     margin-top: 6px;
     font-size: 13px;
     font-weight: 700
 }
 
-.quizz-page-result{
+.quizz-page-result {
     background-color: white;
     padding: 18px;
 }
 
-.quizz-page-result .rank-title{
+.quizz-page-result .rank-title {
     background-color: #4444aa;
     width: 100%;
     height: 89px;
@@ -281,11 +283,39 @@ main {
     font-size: 19px
 }
 
-.quizz-page-result .rank-description{
+.quizz-page-result .rank-description {
     margin-top: 9px;
     font-size: 17px;
     font-weight: 700;
     color: #484848
+}
+
+.quizz-creation .question-1{
+    width: 100vw;
+    height: 825px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    background: #FFFFFF;
+    padding-bottom: 28px;
+}
+
+.quizz-creation h3 {
+    width: 341px;
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 23px;
+    display: flex;
+    align-items: center;
+    color: #000000;
+    margin-top: 28px;
+    margin-bottom: 14px;
+}
+
+.quizz-creation .wrong-answer-spacer {
+    height: 18px;
+    width: 100%;
 }
 
 /* features configuration */

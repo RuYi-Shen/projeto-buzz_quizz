@@ -77,25 +77,48 @@
 
     <main class="quizz-creation info hide">
         <h2>Comece pelo começo</h2>
-        <div class="inputs">
+        <section class="inputs">
             <input type="text" maxlength="65" placeholder="Título do seu quizz" required>
             <input type="url" pattern="https://.*" placeholder="URL da imagem do seu quizz" required>
             <input type="number" min="3" placeholder="Quantidade de perguntas do quizz" required>
             <input type="number" min="2" placeholder="Quantidade de níveis do quizz" required>
-        </div>
+        </section>
         <button onclick="goToQuestions()">Prosseguir pra criar perguntas</button>
     </main>
 
-    <main class="quizz-creation question hide">
+    <main class="quizz-creation question">
         <h2>Crie suas perguntas</h2>
+        <section class="questions">
+            <section class="question-1">
+                <h3>Pergunta 1</h3>
+                <input type="text" placeholder="Texto da pergunta">
+                <input type="text" placeholder="Cor de fundo da pergunta">
+                <h3>Resposta Correta</h3>
+                <input type="text" placeholder="Resposta correta">
+                <input type="url" pattern="https://.*" placeholder="URL da imagem">
+                <h3>Respostas Incorretas</h3>
+                <input type="text" placeholder="Resposta incorreta 1">
+                <input type="url" pattern="https://.*" placeholder="URL da imagem 1">
+                <div class="wrong-answer-spacer"></div>
+                <input type="text" placeholder="Resposta incorreta 2">
+                <input type="url" pattern="https://.*" placeholder="URL da imagem 2">
+                <div class="wrong-answer-spacer"></div>
+                <input type="text" placeholder="Resposta incorreta 3">
+                <input type="url" pattern="https://.*" placeholder="URL da imagem 3">
+            </section>
+            <section class="adicional-questions"></section>
+        </section>
+        <button onclick="goToQuestions()">Prosseguir pra criar níveis</button>
     </main>
 
     <main class="quizz-creation level hide">
         <h2>Agora, decida os níveis!</h2>
+        <button onclick="goToQuestions()">Finalizar Quizz</button>
     </main>
 
     <main class="quizz-creation sucess hide">
         <h2>Seu quizz está pronto!</h2>
+        <button onclick="goToQuestions()">Acessar Quizz</button>
     </main>
 
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
