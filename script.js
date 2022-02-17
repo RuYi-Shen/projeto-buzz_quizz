@@ -71,8 +71,6 @@ function getError(error){
 }
 
 function openQuizz(id){
-    document.querySelector("main").classList.add("hide");
-
     let thisQuizz = allQuizzes.filter((quizz) => quizz.id === id)
     if (thisQuizz.length !== 1)
     {
@@ -83,7 +81,7 @@ function openQuizz(id){
     
     const quizzPage = document.querySelector(".quizz-page")
     quizzPage.innerHTML = renderQuizzPage(thisQuizz)
-    quizzPage.classList.remove("hide")
+    switchScreen('.quizz-page')
 }
 
 function createNewQuizz(){
@@ -153,6 +151,14 @@ function isValidUrl(url) {
     }
     return true;
   }
+
+function switchScreen(screen) {
+    [...document.querySelectorAll('main')]
+        .forEach((main) => {
+            main.classList.add('hide')
+        })
+    document.querySelector(screen).classList.remove('hide')
+}
 
 // Initialization 
 
