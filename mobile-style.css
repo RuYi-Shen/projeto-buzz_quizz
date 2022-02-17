@@ -237,6 +237,32 @@ main {
     color: #484848
 }
 
+.quizz-page-footer{
+    height: 196px;
+    padding-top: 34px;
+    text-align: center;
+}
+
+.quizz-page-footer button{
+    margin-bottom: 8px;
+    border: none;
+    background-color: #EC362D;
+    border-radius: 15px;
+    height: 44px;
+    width: 220px;
+    color: white;
+    font-size: 18px;
+}
+
+.quizz-page-footer div{
+    height: 44px;
+    font-size: 18px;
+    color: #818181;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 /* features configuration */
 
 .hide {

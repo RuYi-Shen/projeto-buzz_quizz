@@ -59,8 +59,20 @@ function getError(error){
     console.log(error.response);
 }
 
-function openQuizz(){
+function openQuizz(id){
     document.querySelector("main").classList.add("hide");
+
+    let thisQuizz = allQuizzes.filter((quizz) => quizz.id === id)
+    if (thisQuizz.length !== 1)
+    {
+        console.error('ERROR: Two quizzes are being identified with the same id')
+        return 1
+    }
+    thisQuizz = thisQuizz[0]
+    
+    const quizzPage = document.querySelector(".quizz-page")
+    quizzPage.innerHTML = renderQuizzPage(thisQuizz)
+    quizzPage.classList.remove("hide")
 }
 
 function createNewQuizz(){
