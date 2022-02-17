@@ -1,5 +1,5 @@
 /* features configuration */
 
 .hide {
-    display: none;
+    display: none !important;
 }

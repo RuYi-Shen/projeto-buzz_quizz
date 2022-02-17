@@ -61,10 +61,10 @@
         <button onclick="goToQuestions()">Prosseguir pra criar perguntas</button>
     </main>
 
-    <main class="quizz-creation question">
+    <main class="quizz-creation question hide">
         <h2>Crie suas perguntas</h2>
         <section class="questions">
-            <section class="question-1">
+            <section class="question">
                 <h3>Pergunta 1</h3>
                 <input type="text" placeholder="Texto da pergunta">
                 <input type="text" placeholder="Cor de fundo da pergunta">
@@ -81,19 +81,19 @@
                 <input type="text" placeholder="Resposta incorreta 3">
                 <input type="url" pattern="https://.*" placeholder="URL da imagem 3">
             </section>
-            <section class="adicional-questions"></section>
+            <section class="additional-questions"></section>
         </section>
-        <button onclick="goToQuestions()">Prosseguir pra criar níveis</button>
+        <button onclick="goToLevels()">Prosseguir pra criar níveis</button>
     </main>
 
     <main class="quizz-creation level hide">
         <h2>Agora, decida os níveis!</h2>
-        <button onclick="goToQuestions()">Finalizar Quizz</button>
+        <button onclick="goToFinish()">Finalizar Quizz</button>
     </main>
 
     <main class="quizz-creation sucess hide">
         <h2>Seu quizz está pronto!</h2>
-        <button onclick="goToQuestions()">Acessar Quizz</button>
+        <button onclick="goToFinish()">Acessar Quizz</button>
     </main>
 
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
@@ -101,8 +101,9 @@
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 
-    <script src="quizz-page.js"></script>
+    
     <script src="script.js"></script>
+    <script src="quizz-page.js"></script>
 </body>
 
 </html>

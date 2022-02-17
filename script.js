@@ -10,16 +10,12 @@ let creationImage = "";
 let creationQuestion = 0;
 let creationLevel = 0;
 
-
-
 let myQuizz = {
     title: "",
     image: "",
     questions: [],
     levels: []
 }
-
-
 
 function getQuizzes(){
     promiseQuizzesGet = axios.get(API_URL);
@@ -92,6 +88,7 @@ function openQuizz(id){
 
 function createNewQuizz(){
     document.querySelector("main").classList.add("hide");
+    document.querySelector(".quizz-creation.info").classList.remove("hide");
 }
 
 function goToQuestions(){
@@ -103,9 +100,43 @@ function goToQuestions(){
     if(validateInfoValues()){
         document.querySelector(".quizz-creation.info").classList.add("hide");
         document.querySelector(".quizz-creation.question").classList.remove("hide");
+        createQuestion();
     }else{
         alert("preencha os dados corretamente");
     }
+}
+
+function createQuestion(){
+    for(let i = 2; i < parseInt(creationQuestion) + 1; i++){
+        document.querySelector(".additional-questions").innerHTML += `
+        <section class="question-header">
+            <h3>Pergunta ${i}</h3>
+            <ion-icon name="create-outline" onclick="showQuestionForm(${i})"></ion-icon>
+        </section>
+        <section class="question hide">
+            <h3>Pergunta ${i}</h3>
+            <input type="text" placeholder="Texto da pergunta">
+            <input type="text" placeholder="Cor de fundo da pergunta">
+            <h3>Resposta Correta</h3>
+            <input type="text" placeholder="Resposta correta">
+            <input type="url" pattern="https://.*" placeholder="URL da imagem">
+            <h3>Respostas Incorretas</h3>
+            <input type="text" placeholder="Resposta incorreta 1">
+            <input type="url" pattern="https://.*" placeholder="URL da imagem 1">
+            <div class="wrong-answer-spacer"></div>
+            <input type="text" placeholder="Resposta incorreta 2">
+            <input type="url" pattern="https://.*" placeholder="URL da imagem 2">
+            <div class="wrong-answer-spacer"></div>
+            <input type="text" placeholder="Resposta incorreta 3">
+            <input type="url" pattern="https://.*" placeholder="URL da imagem 3">
+        </section>
+        `;
+    }
+}
+
+function showQuestionForm(index) {
+    document.querySelectorAll(".additional-questions .question-header")[index - 2].classList.add("hide");
+    document.querySelectorAll(".additional-questions .question")[index - 2].classList.remove("hide");
 }
 
 function validateInfoValues(){
