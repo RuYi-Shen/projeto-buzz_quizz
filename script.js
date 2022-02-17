@@ -10,6 +10,19 @@ let creationImage = "";
 let creationQuestion = 0;
 let creationLevel = 0;
 
+let questionText = "";
+let questionColor = "";
+let rightAnswer = "";
+let rightAnswerImage = "";
+let wrongAnswer1 = "";
+let wrongAnswer1Image = "";
+let wrongAnswer2 = "";
+let wrongAnswer2Image = "";
+let wrongAnswer3 = "";
+let wrongAnswer3Image = "";
+
+let hexColor = /^#[0-9A-F]{6}$/i;
+
 let myQuizz = {
     title: "",
     image: "",
@@ -98,10 +111,16 @@ function goToQuestions(){
     if(validateInfoValues()){
         document.querySelector(".quizz-creation.info").classList.add("hide");
         document.querySelector(".quizz-creation.question").classList.remove("hide");
+        addToMyQuizzInfo();
         createQuestion();
     }else{
         alert("preencha os dados corretamente");
     }
+}
+
+function addToMyQuizzInfo(){
+    myQuizz.title = creationTitle;
+    myQuizz.image = creationImage;
 }
 
 function createQuestion(){
@@ -137,8 +156,71 @@ function showQuestionForm(index) {
     document.querySelectorAll(".additional-questions .question")[index - 2].classList.remove("hide");
 }
 
+function goToLevels(){
+    let inputs = document.querySelectorAll(".quizz-creation.question input");
+    myQuizz.questions = [];
+    for(let i = 0; i < creationQuestion; i++){
+        questionText = inputs[0].value;
+        questionColor = inputs[1].value;
+        rightAnswer = inputs[2].value;
+        rightAnswerImage = inputs[3].value;
+        wrongAnswer1 = inputs[4].value;
+        wrongAnswer1Image = inputs[5].value;
+        wrongAnswer2 = inputs[6].value;
+        wrongAnswer2Image = inputs[7].value;
+        wrongAnswer3 = inputs[8].value;
+        wrongAnswer3Image = inputs[9].value;
+        if(validateQuestionValues()){
+            addToMyQuizzQuestion();
+        }else{
+            alert("preencha os dados corretamente");
+            return;
+        }
+    }
+    document.querySelector(".quizz-creation.question").classList.add("hide");
+    document.querySelector(".quizz-creation.level").classList.remove("hide");
+    createLevel();
+}
+
+function addToMyQuizzQuestion(){
+    for(let i = 0; i < creationQuestion; i++){
+        myQuizz.questions += {
+                title: "Título da pergunta 1",
+				color: "#123456",
+				answers: [
+					{
+						text: "Texto da resposta 1",
+						image: "https://http.cat/411.jpg",
+						isCorrectAnswer: true
+					},
+					{
+						text: "Texto da resposta 2",
+						image: "https://http.cat/412.jpg",
+						isCorrectAnswer: false
+					}
+				]
+			}
+        ;
+        if(i < creationQuestion) {
+            myQuizz.questions += ",";
+        }
+    }
+   
+}
+
+
 function validateInfoValues(){
     if(creationTitle.length >= 20 && isValidUrl(creationImage) && creationQuestion >= 3 && creationLevel >= 2) return true;
+}
+
+function validateQuestionValues(){
+    if(questionText.length >= 20 && hexColor.test(questionColor) && rightAnswer != "" && isValidUrl(rightAnswerImage)){
+        if((wrongAnswer1 != "" && isValidUrl(wrongAnswer1Image)) || (wrongAnswer2 != "" && isValidUrl(wrongAnswer2Image)) || (wrongAnswer3 != "" && isValidUrl(wrongAnswer3Image))) return true;
+    }
+}
+
+function createLevel(){
+
 }
 
 function isValidUrl(url) {
