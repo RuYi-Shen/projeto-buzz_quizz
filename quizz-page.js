@@ -44,8 +44,11 @@ function renderQuizzQuestion(question) {
 }
 
 function renderQuizzAnswer(answer) {
+    const correctClass = answer.isCorrectAnswer ? ' correct' : ''
+
     return `
-        <div class="answer">
+        <div class="answer${correctClass}" onclick="selectAnswer(this)">
+            <div></div>
             <img src="${answer.image}" alt="answer-image">
             <p>${answer.text}</p>
         </div>
@@ -53,7 +56,28 @@ function renderQuizzAnswer(answer) {
 }
 
 function closeQuizzPage() {
-    document.querySelector("main").classList.add("hide");
-    document.querySelector(".quizz-list").classList.remove("hide");
     getQuizzes();
+}
+
+function selectAnswer(answer) {
+    if(answer.parentNode.classList.contains('locked'))
+        return 0
+    
+    answer.classList.add('selected')
+    answer.parentNode.classList.add('locked')
+
+    scrollNextUnlocked()
+}
+
+function scrollNextUnlocked() {
+    const nextUnlocked = [...document.querySelectorAll('.answers')]
+                         .find((question) => !(question.classList.contains('locked')))
+
+    if (nextUnlocked !== undefined)
+        nextUnlocked.parentNode.scrollIntoView({
+            behavior: 'smooth',
+            block: 'center'
+        })
+    else
+        console.log('cabo!')
 }
