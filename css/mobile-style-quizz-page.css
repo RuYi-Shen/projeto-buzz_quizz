@@ -1,0 +1,120 @@
+.quizz-page {
+    padding-top: 69px;
+}
+
+.quizz-page section {
+    width: 100%
+}
+
+.quizz-page-header {
+    background-image: url('https://http.cat/404.jpg');
+    height: 142px;
+    color: white;
+    font-size: 19px;
+}
+
+.quizz-page-header div {
+    background-color: rgba(0, 0, 0, 0.6);
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.quizz-page-questions {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    padding: 24px 0
+}
+
+.quizz-page-questions article {
+    background-color: white;
+    width: 100%;
+    padding: 18px;
+}
+
+.quizz-page-questions .question-title {
+    background-color: #4444aa;
+    width: 100%;
+    height: 89px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 13px;
+    color: white;
+    font-weight: 700;
+    font-size: 19px
+}
+
+.quizz-page-questions .answers {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px
+}
+
+.quizz-page-questions .answer {
+    width: 163px;
+}
+
+.quizz-page img {
+    width: 100%;
+}
+
+.quizz-page-questions .answer p {
+    margin-top: 6px;
+    font-size: 13px;
+    font-weight: 700
+}
+
+.quizz-page-result {
+    background-color: white;
+    padding: 18px;
+}
+
+.quizz-page-result .rank-title {
+    background-color: #4444aa;
+    width: 100%;
+    height: 89px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 9px;
+    color: white;
+    font-weight: 700;
+    font-size: 19px
+}
+
+.quizz-page-result .rank-description {
+    margin-top: 9px;
+    font-size: 17px;
+    font-weight: 700;
+    color: #484848
+}
+
+.quizz-page-footer{
+    height: 196px;
+    padding-top: 34px;
+    text-align: center;
+}
+
+.quizz-page-footer button{
+    margin-bottom: 8px;
+    border: none;
+    background-color: #EC362D;
+    border-radius: 15px;
+    height: 44px;
+    width: 220px;
+    color: white;
+    font-size: 18px;
+}
+
+.quizz-page-footer div{
+    height: 44px;
+    font-size: 18px;
+    color: #818181;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
