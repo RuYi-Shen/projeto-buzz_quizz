@@ -1,5 +1,5 @@
 const API_URL = "https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes";
-const USER_ID = 19992021
+const USER_ID = 19992021;
 
 let promiseQuizzesGet;
 let allQuizzes = [];
