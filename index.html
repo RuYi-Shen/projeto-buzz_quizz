@@ -88,6 +88,16 @@
 
     <main class="quizz-creation level hide">
         <h2>Agora, decida os níveis!</h2>
+        <section class="levels">
+            <section class="level">
+                <h3>Nível 1</h3>
+                <input type="text" placeholder="Título do nível">
+                <input type="number" min="0" max="100" placeholder="% de acerto mínima">
+                <input type="url" pattern="https://.*" placeholder="URL da imagem do nível">
+                <input type="text" class="description" placeholder="Descrição do nível">
+            </section>
+            <section class="additional-levels"></section>
+        </section>
         <button onclick="goToFinish()">Finalizar Quizz</button>
     </main>
 
