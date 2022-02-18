@@ -169,16 +169,16 @@ function goToLevels(){
     let inputs = document.querySelectorAll(".quizz-creation.question input");
     myQuizz.questions = [];
     for(let i = 0; i < creationQuestion; i++){
-        questionText = inputs[0].value;
-        questionColor = inputs[1].value;
-        rightAnswer = inputs[2].value;
-        rightAnswerImage = inputs[3].value;
-        wrongAnswer1 = inputs[4].value;
-        wrongAnswer1Image = inputs[5].value;
-        wrongAnswer2 = inputs[6].value;
-        wrongAnswer2Image = inputs[7].value;
-        wrongAnswer3 = inputs[8].value;
-        wrongAnswer3Image = inputs[9].value;
+        questionText = inputs[0+(10*i)].value;
+        questionColor = inputs[1+(10*i)].value;
+        rightAnswer = inputs[2+(10*i)].value;
+        rightAnswerImage = inputs[3+(10*i)].value;
+        wrongAnswer1 = inputs[4+(10*i)].value;
+        wrongAnswer1Image = inputs[5+(10*i)].value;
+        wrongAnswer2 = inputs[6+(10*i)].value;
+        wrongAnswer2Image = inputs[7+(10*i)].value;
+        wrongAnswer3 = inputs[8+(10*i)].value;
+        wrongAnswer3Image = inputs[9+(10*i)].value;
         if(validateQuestionValues()){
             addToMyQuizzQuestion();
         }else{
@@ -279,7 +279,7 @@ function addToMyQuizzLevel(){
 // quizz creation functions - sucess 
 
 function createSucess(){
-    
+
 }
 
 // validation functions
