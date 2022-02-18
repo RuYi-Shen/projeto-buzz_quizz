@@ -46,6 +46,7 @@ function getQuizzes(){
 // quizz list functions
 
 function renderQuizzes(answer){
+    switchScreen(".quizz-list");
     allQuizzes = answer.data;
     console.log(answer.data);
     filterQuizzes();
@@ -89,22 +90,21 @@ function filterQuizzes(){
 }
 
 function openQuizz(id){
-    let thisQuizz = allQuizzes.filter((quizz) => quizz.id === id)
+    let thisQuizz = allQuizzes.filter((quizz) => quizz.id === id);
     if (thisQuizz.length !== 1)
     {
-        console.error('ERROR: Two quizzes are being identified with the same id')
-        return 1
+        console.error('ERROR: Two quizzes are being identified with the same id');
+        return 1;
     }
-    thisQuizz = thisQuizz[0]
+    thisQuizz = thisQuizz[0];
     
-    const quizzPage = document.querySelector(".quizz-page")
-    quizzPage.innerHTML = renderQuizzPage(thisQuizz)
-    switchScreen('.quizz-page')
+    const quizzPage = document.querySelector(".quizz-page");
+    quizzPage.innerHTML = renderQuizzPage(thisQuizz);
+    switchScreen('.quizz-page');
 }
 
 function createNewQuizz(){
-    document.querySelector("main").classList.add("hide");
-    document.querySelector(".quizz-creation.info").classList.remove("hide");
+    switchScreen(".quizz-creation.info");
 }
 
 // quizz creation functions - info
@@ -116,8 +116,7 @@ function goToQuestions(){
     creationQuestion = inputs[2].value;
     creationLevel = inputs[3].value;
     if(validateInfoValues()){
-        document.querySelector(".quizz-creation.info").classList.add("hide");
-        document.querySelector(".quizz-creation.question").classList.remove("hide");
+        switchScreen(".quizz-creation.question");
         addToMyQuizzInfo();
         createQuestion();
     }else{
@@ -186,8 +185,7 @@ function goToLevels(){
             return;
         }
     }
-    document.querySelector(".quizz-creation.question").classList.add("hide");
-    document.querySelector(".quizz-creation.level").classList.remove("hide");
+    switchScreen(".quizz-creation.level");
     createLevel();
 }
 
@@ -256,8 +254,7 @@ function goToFinish(){
         }
     }
     if(allWrongLevel){
-        document.querySelector(".quizz-creation.level").classList.add("hide");
-        document.querySelector(".quizz-creation.sucess").classList.remove("hide");
+        switchScreen(".quizz-creation.sucess");
         createSucess();
     }
 }
@@ -327,6 +324,7 @@ function isValidUrl(url) {
 
 // Initialization 
 
-getQuizzes();
+switchScreen(".loading");
+//getQuizzes();
 
 
