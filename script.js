@@ -21,6 +21,11 @@ let wrongAnswer2Image = "";
 let wrongAnswer3 = "";
 let wrongAnswer3Image = "";
 
+let levelTitle = "";
+let hitPercentage = 0;
+let levelImage = "";
+let levelDescription = "";
+ 
 let hexColor = /^#[0-9A-F]{6}$/i;
 
 let myQuizz = {
@@ -35,6 +40,8 @@ function getQuizzes(){
     promiseQuizzesGet.then(renderQuizzes);
     promiseQuizzesGet.catch(getError);
 }
+
+// quizz list functions
 
 function renderQuizzes(answer){
     allQuizzes = answer.data;
@@ -79,10 +86,6 @@ function filterQuizzes(){
     });
 }
 
-function getError(error){
-    console.log(error.response);
-}
-
 function openQuizz(id){
     let thisQuizz = allQuizzes.filter((quizz) => quizz.id === id)
     if (thisQuizz.length !== 1)
@@ -101,6 +104,8 @@ function createNewQuizz(){
     document.querySelector("main").classList.add("hide");
     document.querySelector(".quizz-creation.info").classList.remove("hide");
 }
+
+// quizz creation functions - info
 
 function goToQuestions(){
     let inputs = document.querySelectorAll(".quizz-creation.info input");
@@ -122,6 +127,8 @@ function addToMyQuizzInfo(){
     myQuizz.title = creationTitle;
     myQuizz.image = creationImage;
 }
+
+// quizz creation functions - question
 
 function createQuestion(){
     for(let i = 2; i < parseInt(creationQuestion) + 1; i++){
@@ -205,9 +212,34 @@ function addToMyQuizzQuestion(){
             myQuizz.questions += ",";
         }
     }
-   
 }
 
+// quizz creation functions - level
+
+function createLevel(){
+    for(let i = 2; i < parseInt(creationLevel) + 1; i++){
+        document.querySelector(".additional-levels").innerHTML += `
+        <section class="level-header">
+            <h3>Nível ${i}</h3>
+            <ion-icon name="create-outline" onclick="showLevelForm(${i})"></ion-icon>
+        </section>
+        <section class="level hide">
+                <h3>Nível ${i}</h3>
+                <input type="text" placeholder="Título do nível">
+                <input type="number" min="0" max="100" placeholder="% de acerto mínima">
+                <input type="url" pattern="https://.*" placeholder="URL da imagem do nível">
+                <input type="text" class="description" placeholder="Descrição do nível">
+        </section>
+        `;
+    }
+}
+
+function showLevelForm(index) {
+    document.querySelectorAll(".additional-levels .level-header")[index - 2].classList.add("hide");
+    document.querySelectorAll(".additional-levels .level")[index - 2].classList.remove("hide");
+}
+
+// validation functions
 
 function validateInfoValues(){
     if(creationTitle.length >= 20 && isValidUrl(creationImage) && creationQuestion >= 3 && creationLevel >= 2) return true;
@@ -219,8 +251,20 @@ function validateQuestionValues(){
     }
 }
 
-function createLevel(){
 
+
+// global functions
+
+function getError(error){
+    console.log(error.response);
+}
+
+function switchScreen(screen) {
+    [...document.querySelectorAll('main')]
+        .forEach((main) => {
+            main.classList.add('hide')
+        })
+    document.querySelector(screen).classList.remove('hide')
 }
 
 function isValidUrl(url) {
@@ -232,16 +276,14 @@ function isValidUrl(url) {
       return false;  
     }
     return true;
-  }
-
-function switchScreen(screen) {
-    [...document.querySelectorAll('main')]
-        .forEach((main) => {
-            main.classList.add('hide')
-        })
-    document.querySelector(screen).classList.remove('hide')
 }
 
 // Initialization 
 
 getQuizzes();
+
+
+levelTitle = inputs[0*(i+1)].value;
+        hitPercentage = inputs[1*(i+1)].value;
+        levelImage = inputs[2*(i+1)].value;
+        levelDescription = inputs[3*(i+1)].value;
