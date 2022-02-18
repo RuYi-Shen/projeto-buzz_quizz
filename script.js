@@ -25,6 +25,8 @@ let levelTitle = "";
 let hitPercentage = 0;
 let levelImage = "";
 let levelDescription = "";
+
+let allWrongLevel = false;
  
 let hexColor = /^#[0-9A-F]{6}$/i;
 
@@ -192,9 +194,9 @@ function goToLevels(){
 function addToMyQuizzQuestion(){
     for(let i = 0; i < creationQuestion; i++){
         myQuizz.questions += {
-                title: "Título da pergunta 1",
-				color: "#123456",
-				answers: [
+            title: "Título da pergunta 1",
+            color: "#123456",
+            answers: [
 					{
 						text: "Texto da resposta 1",
 						image: "https://http.cat/411.jpg",
@@ -206,8 +208,7 @@ function addToMyQuizzQuestion(){
 						isCorrectAnswer: false
 					}
 				]
-			}
-        ;
+		};
         if(i < creationQuestion) {
             myQuizz.questions += ",";
         }
@@ -239,6 +240,48 @@ function showLevelForm(index) {
     document.querySelectorAll(".additional-levels .level")[index - 2].classList.remove("hide");
 }
 
+function goToFinish(){
+    let inputs = document.querySelectorAll(".quizz-creation.level input");
+    myQuizz.levels = [];
+    for(let i = 0; i < creationLevel; i++){
+        levelTitle = inputs[0+(4*i)].value;
+        hitPercentage = inputs[1+(4*i)].value;
+        levelImage = inputs[2+(4*i)].value;
+        levelDescription = inputs[3+(4*i)].value;
+        if(validateLevelValues()){
+            addToMyQuizzLevel();
+        }else{
+            alert("preencha os dados corretamente");
+            return;
+        }
+    }
+    if(allWrongLevel){
+        document.querySelector(".quizz-creation.level").classList.add("hide");
+        document.querySelector(".quizz-creation.sucess").classList.remove("hide");
+        createSucess();
+    }
+}
+
+function addToMyQuizzLevel(){
+    for(let i = 0; i < creationLevel; i++){
+        myQuizz.levels += {
+            title: levelTitle,
+            image: levelImage,
+            text: levelDescription,
+            minValue: hitPercentage
+		};
+        if(i < creationLevel) {
+            myQuizz.questions += ",";
+        }
+    }
+}
+
+// quizz creation functions - sucess 
+
+function createSucess(){
+    
+}
+
 // validation functions
 
 function validateInfoValues(){
@@ -251,6 +294,10 @@ function validateQuestionValues(){
     }
 }
 
+function validateLevelValues(){
+    if(hitPercentage == 0) allWrongLevel = true;
+    if(levelTitle.length >= 10 && hitPercentage >= 0 && hitPercentage <= 100 && isValidUrl(levelImage) && levelDescription.length >= 30) return true;
+}
 
 
 // global functions
@@ -283,7 +330,3 @@ function isValidUrl(url) {
 getQuizzes();
 
 
-levelTitle = inputs[0*(i+1)].value;
-        hitPercentage = inputs[1*(i+1)].value;
-        levelImage = inputs[2*(i+1)].value;
-        levelDescription = inputs[3*(i+1)].value;
