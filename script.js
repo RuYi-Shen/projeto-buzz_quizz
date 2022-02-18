@@ -325,6 +325,6 @@ function isValidUrl(url) {
 // Initialization 
 
 switchScreen(".loading");
-//getQuizzes();
+getQuizzes();
 
 
