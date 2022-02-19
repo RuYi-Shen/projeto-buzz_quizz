@@ -81,6 +81,8 @@ function finishQuizz() {
     const quizzPage = document.querySelector(".quizz-page")
     const rank = calculateRank()
 
+    console.log(rank)
+
     setTimeout(
         (quizzPage) => {
             quizzPage.scrollIntoView({
@@ -92,9 +94,9 @@ function finishQuizz() {
 
     quizzPage.innerHTML += `
         <section class="quizz-page-result">
-            <div class="rank-title">blabla</div>
-            <img src="https://http.cat/200.jpg" alt="result-image">
-            <p class="rank-description">dasdasdasdads</p>
+            <div class="rank-title">${rank.title}</div>
+            <img src="${rank.image}" alt="result-image">
+            <p class="rank-description">${rank.text}</p>
         </section>
         <section class="quizz-page-footer">
             <button>Reiniciar Quizz</button>
@@ -104,7 +106,11 @@ function finishQuizz() {
 }
 
 function calculateRank() {
-    console.log(document.querySelectorAll('.selected.correct'))
+    const correctAnswers = document.querySelectorAll('.selected.correct').length
+    const questionsCount = document.querySelectorAll('.answers').length
 
-    // quizzLevels.forEach()
+    const correctPercentage = (correctAnswers/questionsCount)*100
+
+    console.log(correctPercentage)
+    return quizzLevels.filter(quizzLevel => quizzLevel.minValue < correctPercentage).pop()
 }
