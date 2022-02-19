@@ -326,5 +326,3 @@ function isValidUrl(url) {
 
 switchScreen(".loading");
 getQuizzes();
-
-

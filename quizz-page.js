@@ -1,4 +1,8 @@
+let quizzLevels = []
+
 function renderQuizzPage(quizz) {
+    quizzLevels = quizz.levels
+
     return `
         <section class="quizz-page-header"
             style="background-image: url('${quizz.image}')"
@@ -12,15 +16,6 @@ function renderQuizzPage(quizz) {
                 .map(renderQuizzQuestion)
                 .join('')
             }
-        </section>
-        <section class="quizz-page-result">
-            <div class="rank-title">blabla</div>
-            <img src="https://http.cat/200.jpg" alt="result-image">
-            <p class="rank-description">dasdasdasdads</p>
-        </section>
-        <section class="quizz-page-footer">
-            <button>Reiniciar Quizz</button>
-            <div onclick="closeQuizzPage()">Voltar pra home</div>
         </section>
     `
 }
@@ -79,5 +74,37 @@ function scrollNextUnlocked() {
             block: 'center'
         })
     else
-        console.log('cabo!')
+        finishQuizz()
+}
+
+function finishQuizz() {
+    const quizzPage = document.querySelector(".quizz-page")
+    const rank = calculateRank()
+
+    setTimeout(
+        (quizzPage) => {
+            quizzPage.scrollIntoView({
+                behavior: 'smooth',
+                block: 'end'
+            })
+        }
+    , 2000, quizzPage)
+
+    quizzPage.innerHTML += `
+        <section class="quizz-page-result">
+            <div class="rank-title">blabla</div>
+            <img src="https://http.cat/200.jpg" alt="result-image">
+            <p class="rank-description">dasdasdasdads</p>
+        </section>
+        <section class="quizz-page-footer">
+            <button>Reiniciar Quizz</button>
+            <div onclick="closeQuizzPage()">Voltar pra home</div>
+        </section>
+    `
+}
+
+function calculateRank() {
+    console.log(document.querySelectorAll('.selected.correct'))
+
+    // quizzLevels.forEach()
 }
