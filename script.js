@@ -303,11 +303,13 @@ function getError(error){
     console.log(error.response);
 }
 
-function switchScreen(screen) {
+function switchScreen(screen) {    
     [...document.querySelectorAll('main')]
-        .forEach((main) => {
-            main.classList.add('hide')
-        })
+    .forEach((main) => {
+        main.classList.add('hide')
+    })
+    document.body.scrollTop = 0; // For Safari
+    document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
     document.querySelector(screen).classList.remove('hide')
 }
 
