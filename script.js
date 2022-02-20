@@ -1,5 +1,5 @@
 const API_URL = "https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes";
-const USER_ID = 19992021;
+const USER_ID = 5445;
 
 let promiseQuizzesGet;
 let allQuizzes = [];
@@ -64,9 +64,13 @@ function renderQuizzes(answer){
 
 function renderMyQuizz(quizz){
     document.querySelector(".my-quizz .quizzes").innerHTML += `
-    <div class="quizz" onclick="openQuizz(${quizz.id})">
-        <div class="gradient-layer"><h3>${quizz.title}</h3></div>
+    <div class="quizz">
+        <div class="gradient-layer" onclick="openQuizz(${quizz.id})"><h3>${quizz.title}</h3></div>
         <img src="${quizz.image}" alt="quizz image">
+        <div class="quizz-settings">
+            <ion-icon name="create-outline" onclick="editQuizz(${quizz.id})"></ion-icon>
+            <ion-icon name="trash-outline" onclick="removeQuizz(${quizz.id})"></ion-icon>
+        </div>
     </div>
     `
 }
@@ -192,17 +196,17 @@ function goToLevels(){
 function addToMyQuizzQuestion(){
     for(let i = 0; i < creationQuestion; i++){
         myQuizz.questions += {
-            title: "Título da pergunta 1",
-            color: "#123456",
+            title: questionText,
+            color: questionColor,
             answers: [
 					{
-						text: "Texto da resposta 1",
-						image: "https://http.cat/411.jpg",
+						text: rightAnswer,
+						image: rightAnswerImage,
 						isCorrectAnswer: true
 					},
 					{
-						text: "Texto da resposta 2",
-						image: "https://http.cat/412.jpg",
+						text: "",
+						image: "",
 						isCorrectAnswer: false
 					}
 				]
@@ -279,6 +283,22 @@ function createSucess(){
 
 }
 
+// bonus functions
+
+function editQuizz(id){
+    
+}
+
+function removeQuizz(id){
+    if (window.confirm("Você realmente deseja remover este Quizz?")) {
+        switchScreen(".loading");
+        //ask server to remove selected Quizz
+        switchScreen(".quizz-list");
+        alert("Quizz deletado com sucesso");
+    }
+}
+
+
 // validation functions
 
 function validateInfoValues(){
@@ -295,7 +315,6 @@ function validateLevelValues(){
     if(hitPercentage == 0) allWrongLevel = true;
     if(levelTitle.length >= 10 && hitPercentage >= 0 && hitPercentage <= 100 && isValidUrl(levelImage) && levelDescription.length >= 30) return true;
 }
-
 
 // global functions
 
