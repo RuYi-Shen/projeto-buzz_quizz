@@ -347,3 +347,11 @@ function isValidUrl(url) {
 
 switchScreen(".loading");
 getQuizzes();
+
+
+/*
+    Coisas a falar com o shen:
+
+    word-break
+    bugs que ele comentou e eu esqueci
+*/
