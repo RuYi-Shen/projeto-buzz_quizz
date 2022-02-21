@@ -11,7 +11,7 @@
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
 }
 
-.quizz-creation input {
+.quizz-creation input , .quizz-creation textarea{
     width: 341px;
     height: 46px;
     border: 1px solid #D1D1D1;
@@ -21,7 +21,7 @@
     font-size: 19px;
     line-height: 22px;
     color: #BABABA;
-    padding-left: 14px;
+    padding: 0 14px;
 }
 
 .quizz-creation button {
@@ -105,8 +105,10 @@
     margin-top: 24px;
 }
 
-.level .description {
+.level textarea {
     height: 177px;
+    padding: 14px 14px;
+    font-family: 'Roboto', sans-serif;
 }
 
 
