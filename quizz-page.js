@@ -1,7 +1,7 @@
-let quizzLevels = []
+let thisQuizz = null
 
 function renderQuizzPage(quizz) {
-    quizzLevels = quizz.levels
+    thisQuizz = quizz
 
     return `
         <section class="quizz-page-header"
@@ -99,7 +99,7 @@ function finishQuizz() {
             <p class="rank-description">${rank.text}</p>
         </section>
         <section class="quizz-page-footer">
-            <button>Reiniciar Quizz</button>
+            <button onclick="openQuizzPage(thisQuizz)">Reiniciar Quizz</button>
             <div onclick="closeQuizzPage()">Voltar pra home</div>
         </section>
     `
@@ -112,5 +112,5 @@ function calculateRank() {
     const correctPercentage = (correctAnswers/questionsCount)*100
 
     console.log(correctPercentage)
-    return quizzLevels.filter(quizzLevel => quizzLevel.minValue < correctPercentage).pop()
+    return thisQuizz.levels.filter(quizzLevel => quizzLevel.minValue < correctPercentage).pop()
 }
