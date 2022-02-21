@@ -347,6 +347,7 @@ function removeQuizz(id){
                 headers: {"Secret-Key" : deleteKey[0].key}
             }
         ).then(() => {
+            renderQuizzes()
             switchScreen(".quizz-list");
             alert("Quizz deletado com sucesso");
         })
