@@ -3,7 +3,9 @@
 }
 
 .quizz-page section {
-    width: 100%
+    max-width: 375px;
+    width: 100%;
+    margin: 0 auto
 }
 
 .quizz-page-header {
@@ -11,6 +13,7 @@
     height: 142px;
     color: white;
     font-size: 19px;
+    max-width: 100% !important;
 }
 
 .quizz-page-header div {
@@ -51,11 +54,11 @@
 .quizz-page-questions .answers {
     display: flex;
     flex-wrap: wrap;
-    gap: 12px
+    gap: 12px;
 }
 
 .quizz-page-questions .answer {
-    width: 163px;
+    width: calc(50% - 6px);
     position: relative
 }
 
