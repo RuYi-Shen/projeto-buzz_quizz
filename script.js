@@ -1,7 +1,6 @@
 const API_URL = "https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes";
-const USER_ID = 5445;
+const USER_ID = 5625;
 
-let promiseQuizzesGet;
 let allQuizzes = [];
 let myQuizzes = [];
 
@@ -38,7 +37,7 @@ let myQuizz = {
 }
 
 function getQuizzes(){
-    promiseQuizzesGet = axios.get(API_URL);
+    let promiseQuizzesGet = axios.get(API_URL);
     promiseQuizzesGet.then(renderQuizzes);
     promiseQuizzesGet.catch(getError);
 }
