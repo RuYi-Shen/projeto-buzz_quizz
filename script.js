@@ -252,12 +252,13 @@ function showLevelForm(index) {
 
 function goToFinish(){
     let inputs = document.querySelectorAll(".quizz-creation.level input");
+    let textareas = document.querySelectorAll(".quizz-creation.level textarea");
     myQuizz.levels = [];
     for(let i = 0; i < creationLevel; i++){
         levelTitle = inputs[0+(3*i)].value;
         hitPercentage = inputs[1+(3*i)].value;
         levelImage = inputs[2+(3*i)].value;
-        levelDescription = textarea[0+i].value;
+        levelDescription = textareas[0+i].value;
         if(validateLevelValues()){
             addToMyQuizzLevel();
         }else{
