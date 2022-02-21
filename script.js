@@ -1,5 +1,5 @@
 const API_URL = "https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes";
-const USER_ID = JSON.parse(localStorage.getItem("ids")) || [];
+const USER_ID = [].concat(JSON.parse(localStorage.getItem("ids")) || []);
 
 let createdQuizz = null;
 let promiseQuizzesGet;
@@ -91,14 +91,16 @@ function filterQuizzes(){
 }
 
 function openQuizz(id){
-    let thisQuizz = allQuizzes.filter((quizz) => quizz.id === id);
-    if (thisQuizz.length !== 1)
-    {
+    let thisQuizz = allQuizzes.concat(myQuizzes)
+    thisQuizz = thisQuizz.filter((quizz) => quizz.id === id);
+    if (thisQuizz.length > 1)
         console.error('ERROR: Two quizzes are being identified with the same id');
-        return 1;
+    else if (thisQuizz.length < 1)
+        console.error('ERROR: Quizz not found');
+    else {
+        thisQuizz = thisQuizz[0];
+        openQuizzPage(thisQuizz)
     }
-    thisQuizz = thisQuizz[0];
-    openQuizzPage(thisQuizz)
 }
 
 function openQuizzPage(quizz) {
@@ -381,5 +383,4 @@ getQuizzes();
 
     word-break
     bugs que ele comentou e eu esqueci
-    9 questions bug
 */
