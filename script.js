@@ -1,6 +1,7 @@
 const API_URL = "https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes";
 const USER_ID = 5445;
 
+let createdQuizz = null;
 let promiseQuizzesGet;
 let allQuizzes = [];
 let myQuizzes = [];
@@ -101,9 +102,12 @@ function openQuizz(id){
         return 1;
     }
     thisQuizz = thisQuizz[0];
-    
+    openQuizzPage(thisQuizz)
+}
+
+function openQuizzPage(quizz) {
     const quizzPage = document.querySelector(".quizz-page");
-    quizzPage.innerHTML = renderQuizzPage(thisQuizz);
+    quizzPage.innerHTML = renderQuizzPage(quizz);
     switchScreen('.quizz-page');
 }
 
@@ -194,27 +198,32 @@ function goToLevels(){
 }
 
 function addToMyQuizzQuestion(){
-    for(let i = 0; i < creationQuestion; i++){
-        myQuizz.questions += {
-            title: questionText,
-            color: questionColor,
-            answers: [
-					{
-						text: rightAnswer,
-						image: rightAnswerImage,
-						isCorrectAnswer: true
-					},
-					{
-						text: "",
-						image: "",
-						isCorrectAnswer: false
-					}
-				]
-		};
-        if(i < creationQuestion) {
-            myQuizz.questions += ",";
-        }
-    }
+    myQuizz.questions.push({
+        title: questionText,
+        color: questionColor,
+        answers: [
+                {
+                    text: rightAnswer,
+                    image: rightAnswerImage,
+                    isCorrectAnswer: true
+                },
+                {
+                    text: wrongAnswer1,
+                    image: wrongAnswer1Image,
+                    isCorrectAnswer: false
+                },
+                {
+                    text: wrongAnswer2,
+                    image: wrongAnswer2Image,
+                    isCorrectAnswer: false
+                },
+                {
+                    text: wrongAnswer3,
+                    image: wrongAnswer3Image,
+                    isCorrectAnswer: false
+                }
+            ]
+    });
 }
 
 // quizz creation functions - level
@@ -257,31 +266,50 @@ function goToFinish(){
             return;
         }
     }
-    if(allWrongLevel){
-        switchScreen(".quizz-creation.sucess");
-        createSucess();
+    if(allWrongLevel){ // ask about this
+        switchScreen(".loading");
+        console.log(myQuizz)
+        axios
+            .post(API_URL, myQuizz)
+            .then(createSucess)
+            .catch((error) => {
+                console.error(error)
+                alert('something went wrong ;--;')
+            })
     }
 }
 
 function addToMyQuizzLevel(){
-    for(let i = 0; i < creationLevel; i++){
-        myQuizz.levels += {
-            title: levelTitle,
-            image: levelImage,
-            text: levelDescription,
-            minValue: hitPercentage
-		};
-        if(i < creationLevel) {
-            myQuizz.questions += ",";
-        }
-    }
+        myQuizz.levels.push({
+        title: levelTitle,
+        image: levelImage,
+        text: levelDescription,
+        minValue: hitPercentage
+    });
 }
 
 // quizz creation functions - sucess 
 
-function createSucess(){
-
+function createSucess(response){
+    //localstorage
+    const successPage = document.querySelector(".quizz-creation.sucess")
+    successPage.innerHTML = testezada(response.data)
+    createdQuizz = response.data
+    successPage.querySelector('button').addEventListener('click', () => openQuizzPage(createdQuizz))
+    switchScreen(".quizz-creation.sucess");
 }
+
+const testezada = quizz => `
+    <h2>Seu quizz está pronto!</h2>
+    <div class="quizz">
+        <div class="gradient-layer"><h3>${quizz.title}</h3></div>
+        <img src="${quizz.image}" alt="quizz image">
+    </div>
+    <section class="quizz-page-footer">
+        <button>Abrir Quizz</button>
+        <div onclick="closeQuizzPage()">Voltar pra home</div>
+    </section>
+`
 
 // bonus functions
 
@@ -354,4 +382,5 @@ getQuizzes();
 
     word-break
     bugs que ele comentou e eu esqueci
+    9 questions bug
 */
