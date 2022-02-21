@@ -22,7 +22,7 @@ function renderQuizzPage(quizz) {
 
 function renderQuizzQuestion(question) {
     return `
-        <article>
+        <article data-identifier="question">
             <div class="question-title"
                 style="background-color: ${question.color}"
             >
@@ -42,7 +42,7 @@ function renderQuizzAnswer(answer) {
     const correctClass = answer.isCorrectAnswer ? ' correct' : ''
 
     return `
-        <div class="answer${correctClass}" onclick="selectAnswer(this)">
+        <div class="answer${correctClass}" data-identifier="answer" onclick="selectAnswer(this)">
             <div></div>
             <img src="${answer.image}" alt="answer-image">
             <p>${answer.text}</p>
@@ -93,7 +93,7 @@ function finishQuizz() {
     , 2000, quizzPage)
 
     quizzPage.innerHTML += `
-        <section class="quizz-page-result">
+        <section class="quizz-page-result" data-identifier="quizz-result">
             <div class="rank-title">${rank.title}</div>
             <img src="${rank.image}" alt="result-image">
             <p class="rank-description">${rank.text}</p>

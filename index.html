@@ -33,16 +33,16 @@
         <section class="my-quizz">
             <div class="my-quizz-header hide">
                 <h2>Seus Quizzes</h2>
-                <ion-icon name="add-circle" onclick="createNewQuizz()"></ion-icon>
+                <ion-icon data-identifier="create-quizz" name="add-circle" onclick="createNewQuizz()"></ion-icon>
             </div>
             
             <div class="empty-quizz quizz">
                 <p>Você não criou nenhum quizz ainda :(</p>
-                <button onclick="createNewQuizz()"><p>Criar Quizz</p></button>
+                <button data-identifier="create-quizz" onclick="createNewQuizz()"><p>Criar Quizz</p></button>
             </div>
-            <div class="quizzes"></div>
+            <div class="quizzes" data-identifier="create-quizz"></div>
         </section>
-        <section class="all-quizz">
+        <section class="all-quizz" data-identifier="general-quizzes">
             <h2>Todos os Quizzes</h2>
             <div class="quizzes"></div>
         </section>
@@ -65,7 +65,7 @@
     <main class="quizz-creation question hide">
         <h2>Crie suas perguntas</h2>
         <section class="questions">
-            <section class="question">
+            <section class="question" data-identifier="expand">
                 <h3>Pergunta 1</h3>
                 <input type="text" placeholder="Texto da pergunta">
                 <input type="text" placeholder="Cor de fundo da pergunta">
@@ -90,7 +90,7 @@
     <main class="quizz-creation level hide">
         <h2>Agora, decida os níveis!</h2>
         <section class="levels">
-            <section class="level">
+            <section class="level" data-identifier="level">
                 <h3>Nível 1</h3>
                 <input type="text" placeholder="Título do nível">
                 <input type="number" min="0" max="100" placeholder="% de acerto mínima">

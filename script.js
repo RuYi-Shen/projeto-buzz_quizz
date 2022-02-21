@@ -67,7 +67,7 @@ function renderQuizzes(answer){
 function renderMyQuizz(quizz){
     document.querySelector(".my-quizz .quizzes").innerHTML += `
     <div class="quizz">
-        <div class="gradient-layer" onclick="openQuizz(${quizz.id})"><h3>${quizz.title}</h3></div>
+        <div class="gradient-layer" data-identifier="general-quizzes" onclick="openQuizz(${quizz.id})"><h3>${quizz.title}</h3></div>
         <img src="${quizz.image}" alt="quizz image">
         <div class="quizz-settings">
             <ion-icon name="create-outline" onclick="editQuizz(${quizz.id})"></ion-icon>
@@ -79,7 +79,7 @@ function renderMyQuizz(quizz){
 
 function renderAllQuizz(quizz){
     document.querySelector(".all-quizz .quizzes").innerHTML += `
-    <div class="quizz" onclick="openQuizz(${quizz.id})">
+    <div class="quizz" data-identifier="general-quizzes" onclick="openQuizz(${quizz.id})">
         <div class="gradient-layer"><h3>${quizz.title}</h3></div>
         <img src="${quizz.image}" alt="quizz image">
     </div>
@@ -143,9 +143,9 @@ function createQuestion(){
         document.querySelector(".additional-questions").innerHTML += `
         <section class="question-header">
             <h3>Pergunta ${i}</h3>
-            <ion-icon name="create-outline" onclick="showQuestionForm(${i})"></ion-icon>
+            <ion-icon data-identifier="expand" name="create-outline" onclick="showQuestionForm(${i})"></ion-icon>
         </section>
-        <section class="question hide">
+        <section class="question hide" data-identifier="expand">
             <h3>Pergunta ${i}</h3>
             <input type="text" placeholder="Texto da pergunta">
             <input type="text" placeholder="Cor de fundo da pergunta">
@@ -232,9 +232,9 @@ function createLevel(){
         document.querySelector(".additional-levels").innerHTML += `
         <section class="level-header">
             <h3>Nível ${i}</h3>
-            <ion-icon name="create-outline" onclick="showLevelForm(${i})"></ion-icon>
+            <ion-icon data-identifier="expand" name="create-outline" onclick="showLevelForm(${i})"></ion-icon>
         </section>
-        <section class="level hide">
+        <section class="level hide" data-identifier="level">
                 <h3>Nível ${i}</h3>
                 <input type="text" placeholder="Título do nível">
                 <input type="number" min="0" max="100" placeholder="% de acerto mínima">
