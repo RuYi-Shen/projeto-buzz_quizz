@@ -111,4 +111,15 @@
     font-family: 'Roboto', sans-serif;
 }
 
+#quizz-creation-created {
+    position: absolute;
+    bottom: 7px;
+    left: 18px;
+    font-size: 19px;
+    line-height: 22px;
+    display: flex;
+    align-items: center;
+    color: #FFFFFF;
+    max-width: calc(340px - 36px);
+}
 

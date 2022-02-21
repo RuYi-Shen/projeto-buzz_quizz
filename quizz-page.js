@@ -30,6 +30,7 @@ function renderQuizzQuestion(question) {
             </div>
             <div class="answers">
                 ${question.answers
+                    .sort(() => Math.random() - 0.5)
                     .map(renderQuizzAnswer)
                     .join('')
                 }

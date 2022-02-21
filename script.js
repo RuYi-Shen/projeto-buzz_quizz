@@ -1,6 +1,6 @@
 const API_URL = "https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes";
 
-const USER_ID = [].concat(JSON.parse(localStorage.getItem("ids")) || []);
+let USER_ID = JSON.parse(localStorage.getItem('my-quizzes')) || [];
 
 let createdQuizz = null;
 
@@ -87,8 +87,8 @@ function renderAllQuizz(quizz){
 }
 
 function filterQuizzes(){
-    myQuizzes = allQuizzes.filter(quizz => USER_ID.includes(quizz.id));
-    allQuizzes = allQuizzes.filter(quizz => !USER_ID.includes(quizz.id));
+    myQuizzes = allQuizzes.filter(quizz => USER_ID.map(a => a.id).includes(quizz.id));
+    allQuizzes = allQuizzes.filter(quizz => !USER_ID.map(a => a.id).includes(quizz.id));
 }
 
 function openQuizz(id){
@@ -110,7 +110,15 @@ function openQuizzPage(quizz) {
     switchScreen('.quizz-page');
 }
 
+function initializeQuizzCreation() {
+    allWrongLevel = false;
+
+    [...document.querySelectorAll('input')].forEach((input) => input.value = "");
+    [...document.querySelectorAll('textarea')].forEach((textA) => textA.value = "");
+}
+
 function createNewQuizz(){
+    initializeQuizzCreation();
     switchScreen(".quizz-creation.info");
 }
 
@@ -197,31 +205,38 @@ function goToLevels(){
 }
 
 function addToMyQuizzQuestion(){
+    let myAnswers = [
+        {
+            text: rightAnswer,
+            image: rightAnswerImage,
+            isCorrectAnswer: true
+        }
+    ]
+
+    if(wrongAnswer1)
+        myAnswers.push({
+            text: wrongAnswer1,
+            image: wrongAnswer1Image,
+            isCorrectAnswer: false
+        })
+    if(wrongAnswer2)
+        myAnswers.push({
+            text: wrongAnswer2,
+            image: wrongAnswer2Image,
+            isCorrectAnswer: false
+        })
+    if(wrongAnswer3)
+        myAnswers.push({
+            text: wrongAnswer3,
+            image: wrongAnswer3Image,
+            isCorrectAnswer: false
+        })
+        
+
     myQuizz.questions.push({
         title: questionText,
         color: questionColor,
-        answers: [
-                {
-                    text: rightAnswer,
-                    image: rightAnswerImage,
-                    isCorrectAnswer: true
-                },
-                {
-                    text: wrongAnswer1,
-                    image: wrongAnswer1Image,
-                    isCorrectAnswer: false
-                },
-                {
-                    text: wrongAnswer2,
-                    image: wrongAnswer2Image,
-                    isCorrectAnswer: false
-                },
-                {
-                    text: wrongAnswer3,
-                    image: wrongAnswer3Image,
-                    isCorrectAnswer: false
-                }
-            ]
+        answers: myAnswers
     });
 }
 
@@ -292,8 +307,10 @@ function addToMyQuizzLevel(){
 
 function createSucess(response){
     createdQuizz = response.data
-    USER_ID.push(createdQuizz.id)
-    localStorage.setItem('ids', USER_ID)
+    const saveIds = JSON.stringify(USER_ID.concat({id: createdQuizz.id, key: createdQuizz.key}))
+    localStorage.setItem('my-quizzes', saveIds)
+
+    USER_ID = JSON.parse(localStorage.getItem('my-quizzes')) || [];
 
     const successPage = document.querySelector(".quizz-creation.sucess")
     successPage.innerHTML = successScreenTemplate(createdQuizz)
@@ -305,7 +322,7 @@ function createSucess(response){
 const successScreenTemplate = quizz => `
     <h2>Seu quizz está pronto!</h2>
     <div class="quizz">
-        <div class="gradient-layer"><h3>${quizz.title}</h3></div>
+        <div class="gradient-layer"><h6 id="quizz-creation-created">${quizz.title}</h6></div>
         <img src="${quizz.image}" alt="quizz image">
     </div>
     <section class="quizz-page-footer">
@@ -323,9 +340,16 @@ function editQuizz(id){
 function removeQuizz(id){
     if (window.confirm("Você realmente deseja remover este Quizz?")) {
         switchScreen(".loading");
-        //ask server to remove selected Quizz
-        switchScreen(".quizz-list");
-        alert("Quizz deletado com sucesso");
+        const deleteKey = USER_ID.filter((e) => e.id === id)
+        axios.delete(
+            `${API_URL}/${id}`,
+            { 
+                headers: {"Secret-Key" : deleteKey[0].key}
+            }
+        ).then(() => {
+            switchScreen(".quizz-list");
+            alert("Quizz deletado com sucesso");
+        })
     }
 }
 

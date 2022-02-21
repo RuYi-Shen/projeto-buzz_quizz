@@ -73,6 +73,7 @@
     display: flex;
     align-items: center;
     color: #FFFFFF;
+    max-width: calc(340px - 36px);
 }
 
 .gradient-layer {
