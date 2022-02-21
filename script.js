@@ -1,5 +1,5 @@
 const API_URL = "https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes";
-const USER_ID = 5445;
+const USER_ID = JSON.parse(localStorage.getItem("ids")) || [];
 
 let createdQuizz = null;
 let promiseQuizzesGet;
@@ -86,12 +86,8 @@ function renderAllQuizz(quizz){
 }
 
 function filterQuizzes(){
-    myQuizzes = allQuizzes.filter(quizz => {
-        if (quizz.id == USER_ID) return true;
-    });
-    allQuizzes = allQuizzes.filter(quizz => {
-        if (quizz.id != USER_ID) return true;
-    });
+    myQuizzes = allQuizzes.filter(quizz => USER_ID.includes(quizz.id));
+    allQuizzes = allQuizzes.filter(quizz => !USER_ID.includes(quizz.id));
 }
 
 function openQuizz(id){
@@ -291,15 +287,18 @@ function addToMyQuizzLevel(){
 // quizz creation functions - sucess 
 
 function createSucess(response){
-    //localstorage
-    const successPage = document.querySelector(".quizz-creation.sucess")
-    successPage.innerHTML = testezada(response.data)
     createdQuizz = response.data
+    USER_ID.push(createdQuizz.id)
+    localStorage.setItem('ids', USER_ID)
+
+    const successPage = document.querySelector(".quizz-creation.sucess")
+    successPage.innerHTML = successScreenTemplate(createdQuizz)
+    
     successPage.querySelector('button').addEventListener('click', () => openQuizzPage(createdQuizz))
     switchScreen(".quizz-creation.sucess");
 }
 
-const testezada = quizz => `
+const successScreenTemplate = quizz => `
     <h2>Seu quizz está pronto!</h2>
     <div class="quizz">
         <div class="gradient-layer"><h3>${quizz.title}</h3></div>

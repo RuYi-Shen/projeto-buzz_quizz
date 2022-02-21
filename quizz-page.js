@@ -1,5 +1,4 @@
-let quizzLevels = []
-let quizzId = 0
+let thisQuizz = null
 
 function renderQuizzPage(quizz) {
     thisQuizz = quizz
