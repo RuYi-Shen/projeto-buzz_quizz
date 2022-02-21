@@ -239,7 +239,7 @@ function createLevel(){
                 <input type="text" placeholder="Título do nível">
                 <input type="number" min="0" max="100" placeholder="% de acerto mínima">
                 <input type="url" pattern="https://.*" placeholder="URL da imagem do nível">
-                <input type="text" class="description" placeholder="Descrição do nível">
+                <textarea placeholder="Descrição do nível"></textarea>
         </section>
         `;
     }
@@ -254,10 +254,10 @@ function goToFinish(){
     let inputs = document.querySelectorAll(".quizz-creation.level input");
     myQuizz.levels = [];
     for(let i = 0; i < creationLevel; i++){
-        levelTitle = inputs[0+(4*i)].value;
-        hitPercentage = inputs[1+(4*i)].value;
-        levelImage = inputs[2+(4*i)].value;
-        levelDescription = inputs[3+(4*i)].value;
+        levelTitle = inputs[0+(3*i)].value;
+        hitPercentage = inputs[1+(3*i)].value;
+        levelImage = inputs[2+(3*i)].value;
+        levelDescription = textarea[0+i].value;
         if(validateLevelValues()){
             addToMyQuizzLevel();
         }else{
