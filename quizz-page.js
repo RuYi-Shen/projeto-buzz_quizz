@@ -106,11 +106,11 @@ function finishQuizz() {
 }
 
 function calculateRank() {
-    const correctAnswers = document.querySelectorAll('.selected.correct').length
-    const questionsCount = document.querySelectorAll('.answers').length
+    const correctAnswers = document.querySelectorAll('.selected.correct').length || 0
+    const questionsCount = document.querySelectorAll('.answers').length || 0
 
     const correctPercentage = (correctAnswers/questionsCount)*100
 
     console.log(correctPercentage)
-    return thisQuizz.levels.filter(quizzLevel => quizzLevel.minValue < correctPercentage).pop()
+    return thisQuizz.levels.filter(quizzLevel => quizzLevel.minValue <= correctPercentage).pop()
 }
